@@ -1,3 +1,5 @@
+### This script is for preprocessing the raw Tox21 data downloaded online (check the file 'tox21.csv.gz').
+
 import os
 import pandas as pd
 

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+*.ipynb_checkpoints
+tox21.csv
+tox21.csv.gz
