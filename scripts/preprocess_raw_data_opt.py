@@ -1,24 +1,25 @@
-# For preprocessing the Tox21 dadtafile downloaded directly as a csv.gz file with multiple data columns.
-
+import os
 import pandas as pd
 
-# Open the csv.gz folder and check the full data.
-df = pd.read_csv('tox21.csv.gz', nrows=1000)
-print(df.head())
+# Get the path of this script.
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# We want only rows (molecules) with SR-MMP values 0.0 or 1.0, not NaN.
+# Input: tox21.csv.gz in ../data/
+input_path = os.path.join(script_dir, '..', 'data', 'tox21.csv.gz')
+df = pd.read_csv(input_path)
+
+# Preprocess.
 df_filtered = df[['smiles', 'SR-MMP']].dropna()
-
-# Rename the column SR-MMP to 'toxicity'.
 df_filtered.columns = ['smiles', 'toxicity']
-
-# Convert toxicity values from float to integer.
 df_filtered['toxicity'] = df_filtered['toxicity'].astype(int)
 
-# Save the cleaned data.
-df_filtered.to_csv('tox21_sr-mmp.csv', index=False)
+# Save output to ../data/
+output_path = os.path.join(script_dir, '..', 'data', 'tox21_sr-mmp.csv')
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+df_filtered.to_csv(output_path, index=False)
 
-df2 = pd.read_csv('tox21_sr-mmp.csv', nrows=1000)
+print(f"Saved cleaned data to: {output_path}")
+
+# Load again to preview.
+df2 = pd.read_csv(output_path, nrows=1000)
 print(df2.head())
-
-# With this, we now have a clean, ready-to-go CSV file with molecule SMILES strings and binary toxicity labels.
