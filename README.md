@@ -9,7 +9,9 @@ This project is a lightweight machine learning tool that predicts molecular toxi
 - Parses SMILES strings from real chemical data
 - Calculates Mordred molecular descriptors
 - Trains a Random Forest model for binary toxicity classification
-- Evaluates model performance with F1-score, precision, recall, and ROC AUC
+- Evaluates model performance with precision, recall, F1-score, and ROC AUC
+- Predicts toxicity on new molecules via SMILES input
+- Provides exploratory data analysis and molecule visualization
 
 ---
 
@@ -19,8 +21,9 @@ This project is a lightweight machine learning tool that predicts molecular toxi
 - RDKit
 - Mordred
 - Scikit-learn
-- Pandas
-- NumPy
+- Seaborn / Matplotlib
+- Pandas / NumPy
+- Jupyter Notebooks
 
 ---
 
@@ -28,19 +31,38 @@ This project is a lightweight machine learning tool that predicts molecular toxi
 
 ```
 toxicity-predictor/
-├── data/                      # Cleaned dataset (Tox21 SR-MMP)
+├── data/                      # Cleaned dataset and input/output molecules
 │   └── tox21_sr-mmp.csv
+│   └── new_molecules.csv
+│   └── predictions.csv
 │
-├── scripts/                   # Python scripts
-│   └── train_model.py         # Main training script
+├── scripts/                   # Python scripts for pipeline stages
+│   ├── preprocess_data.py     # Clean original dataset
+│   ├── train_model.py         # Train and evaluate RandomForest model
+│   └── predict_toxicity.py    # Predict toxicity for new SMILES
 │
-├── notebooks/                 # Optional: Jupyter notebooks
+├── model/                     # Trained model + feature names
+│   ├── random_forest_model.pkl
+│   └── descriptor_names.txt
+│
+├── notebooks/                 # Jupyter notebooks for EDA
 │   └── eda.ipynb
 │
 ├── requirements.txt           # Python dependencies
-├── README.md                  # This file
-└── .gitignore                 # Files and folders to ignore
+├── README.md                  # Project overview
+└── .gitignore                 # Files/folders to ignore
 ```
+
+---
+
+## 🧪 Exploratory Data Analysis
+
+All EDA is located in `notebooks/eda.ipynb`. It includes:
+
+- Toxicity class imbalance visualization
+- Distribution of molecular properties (Molecular Weight, LogP, TPSA, Rotatable Bonds)
+- Paired visual comparison of toxic vs non-toxic molecules based on structural similarity
+- Top 20 feature importances from trained Random Forest model
 
 ---
 
@@ -66,6 +88,11 @@ pip install -r requirements.txt
 ### 4. Run the model training script
 ```bash
 python scripts/train_model.py
+```
+
+### 5. Predict toxicity on new molecules
+```bash
+python scripts/predict_toxicity.py
 ```
 
 ---
