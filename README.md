@@ -32,25 +32,27 @@ This project is a lightweight machine learning tool that predicts molecular toxi
 ```
 toxicity-predictor/
 ├── data/                      # Cleaned dataset and input/output molecules
-│   └── tox21_sr-mmp.csv
 │   └── new_molecules.csv
 │   └── predictions.csv
+│   └── tox21_sr-mmp.csv
+|   └── tox21.csv.gz (which has been preprocessed by Step_1_preprocess.py to tox21_sr-mmp)
 │
 ├── scripts/                   # Python scripts for pipeline stages
-│   ├── preprocess_data.py     # Clean original dataset
-│   ├── train_model.py         # Train and evaluate RandomForest model
-│   └── predict_toxicity.py    # Predict toxicity for new SMILES
+│   ├── Step_1_preprocess.py   # Clean original dataset
+│   ├── Step_2_train_model.py  # Train and evaluate RandomForest model
+│   └── Step_3_tox_predict.py  # Predict toxicity for new SMILES
 │
 ├── model/                     # Trained model + feature names
-│   ├── random_forest_model.pkl
-│   └── descriptor_names.txt
+│   ├── descriptor_names.txt
+│   └── random_forest_model.pkl
 │
 ├── notebooks/                 # Jupyter notebooks for EDA
 │   └── eda.ipynb
 │
-├── requirements.txt           # Python dependencies
+├── .gitattributes
+├── .gitignore                 # Files/folders to ignore
 ├── README.md                  # Project overview
-└── .gitignore                 # Files/folders to ignore
+└── requirements.txt               # Python dependencies
 ```
 
 ---
