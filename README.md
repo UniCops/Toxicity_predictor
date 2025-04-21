@@ -116,7 +116,7 @@ ROC AUC Score: 0.899
 
 ---
 
-## Example output of predicting the toxicity of new molecules
+## 📊 Example output of predicting the toxicity of new molecules
 
 ```
 smiles,mol,toxicity_prediction
