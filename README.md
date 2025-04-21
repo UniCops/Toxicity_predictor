@@ -99,7 +99,7 @@ python scripts/predict_toxicity.py
 
 ---
 
-## 📊 Example Output
+## 📊 Example output of model training
 
 ```
               precision    recall  f1-score   support
@@ -112,6 +112,18 @@ python scripts/predict_toxicity.py
 weighted avg       0.86      0.86      0.83       149
 
 ROC AUC Score: 0.899
+```
+
+---
+
+## Example output of predicting the toxicity of new molecules
+
+```
+smiles,mol,toxicity_prediction
+CC(=O)OC1=CC=CC=C1C(=O)O,<rdkit.Chem.rdchem.Mol object at 0x00000234A8498F90>,0
+CN1CCC(CC1)NC2=NC=NC3=CC=CC=C23,<rdkit.Chem.rdchem.Mol object at 0x00000234B8729690>,0
+CC(C)CC(=O)O,<rdkit.Chem.rdchem.Mol object at 0x00000234B8729620>,0
+CCOc1ccc(cc1OC)C(=O)O,<rdkit.Chem.rdchem.Mol object at 0x00000234B8729700>,0
 ```
 
 ---
